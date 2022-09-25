@@ -1,0 +1,41 @@
+ /// @date    2018-06-26 16:14:43
+#include <string.h>
+#include <iostream>
+using std::cout;
+using std::endl;
+
+class Base {
+public:
+	Base(const char * pdata)
+	: _pdata(new char[strlen(pdata) + 1]())	{
+		strcpy(_pdata, pdata);
+		cout << "Base(const char *)" << endl;
+	}
+	//对于基类而言，如果内部定义了虚函数，
+	//一般来说都会将析构函数设置成虚函数
+	virtual void display() 	{		cout << _pdata ;	}
+	virtual	~Base()	{		delete [] _pdata;		cout << "~Base()" << endl;	}
+private:
+	char * _pdata;
+};//end of Base
+
+class Derived : public Base {
+public:
+	Derived(const char * pdata, const char * pdata2)
+		: Base(pdata)
+		, _pdata2(new char[strlen(pdata2) + 1]())	{
+			cout << "Derived(const char*,const char*)" << endl;
+			strcpy(_pdata2, pdata2);
+	}
+	void display()	{	Base::display();	cout << ":" << _pdata2 << endl;	}
+	//一旦将基类的析构函数设置为虚函数之后，派生类析构函数会自动成为虚函数
+	~Derived()	{		delete  [] _pdata2;		cout << "~Derived()" << endl;	}
+private:char * _pdata2;
+};//end of derived
+ 
+int main(void){
+	Base * pBase = new Derived("hello", "world");
+	pBase->display();
+	delete pBase;
+	return 0;
+}
