@@ -1,0 +1,120 @@
+ ///
+ /// @file    multimap.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-16 11:09:25
+ ///
+ 
+#include <iostream>
+#include <string>
+#include <map>
+using std::cout;
+using std::endl;
+using std::multimap;
+using std::pair;
+using std::string;
+
+template <typename Container>
+void display(const Container & c)
+{
+	typename Container::const_iterator cit = c.begin();
+	for(; cit != c.end(); ++cit)
+	{
+		cout << cit-> first << " --> " << cit->second << endl;
+	}
+	cout << endl;
+}
+
+
+void test0(void)
+{
+	//multimap内部不能存放关键字相同的元素，默认情况下采用升序的方式进行排列
+	multimap<int, string> multimapIntStr{
+		pair<int, string>(1, "北京"),
+		pair<int, string>(2, "上海"),
+		std::make_pair(3, "广州"),
+		std::make_pair(4, "深圳"),
+		std::make_pair(1, "杭州")
+	};
+
+	cout << "multimapIntStr's size = " << multimapIntStr.size() << endl;
+	display(multimapIntStr);
+
+	//multimap不支持下标访问运算符
+	//cout << multimapIntStr[1] << endl;//error
+
+	//只查找
+	multimap<int, string>::iterator it = multimapIntStr.find(6);
+	if(it != multimapIntStr.end()) {
+		cout << "查找成功" << endl;
+		cout << it->first << " --> " << it->second << endl;
+	}
+	
+	if(it == multimapIntStr.end())
+		cout << "查找的元素不存在" << endl;
+
+	display(multimapIntStr);
+}
+ 
+void test1(void)
+{
+	//multimap内部不能存放关键字相同的元素，默认情况下采用升序的方式进行排列
+	multimap<int, string, std::greater<int>> multimapIntStr{
+		pair<int, string>(1, "北京"),
+		pair<int, string>(2, "上海"),
+		std::make_pair(3, "广州"),
+		std::make_pair(4, "深圳"),
+		std::make_pair(1, "杭州")
+	};
+
+	cout << "multimapIntStr's size = " << multimapIntStr.size() << endl;
+	display(multimapIntStr);
+
+
+	//只查找 find
+	multimap<int, string>::iterator it = multimapIntStr.find(6);
+	if(it != multimapIntStr.end()) {
+		cout << "查找成功" << endl;
+		cout << it->first << " --> " << it->second << endl;
+	}
+	
+	if(it == multimapIntStr.end())
+		cout << "查找的元素不存在" << endl;
+
+	//添加元素
+	//insert
+	multimapIntStr.insert(std::make_pair(6, "苏州"));
+
+	display(multimapIntStr);
+}
+
+void test2(void)
+{
+	//multimap内部不能存放关键字相同的元素，默认情况下采用升序的方式进行排列
+	multimap<string, string> multimapIntStr{
+		pair<string, string>("aa", "北京"),
+		pair<string, string>("bb", "上海"),
+		std::make_pair("cc", "广州"),
+		std::make_pair("dd", "深圳"),
+		std::make_pair("aa", "杭州")
+	};
+
+	cout << "multimapIntStr's size = " << multimapIntStr.size() << endl;
+	display(multimapIntStr);
+
+	//只查找
+	multimap<string, string>::iterator it = multimapIntStr.find("gg");
+	if(it != multimapIntStr.end()) {
+		cout << "查找成功" << endl;
+		cout << it->first << " --> " << it->second << endl;
+	}
+	
+	if(it == multimapIntStr.end())
+		cout << "查找的元素不存在" << endl;
+
+	display(multimapIntStr);
+}
+int main(void)
+{
+	test0();
+	return 0;
+}
