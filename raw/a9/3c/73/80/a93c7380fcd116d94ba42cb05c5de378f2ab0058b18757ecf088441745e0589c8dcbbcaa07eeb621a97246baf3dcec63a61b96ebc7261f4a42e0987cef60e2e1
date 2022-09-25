@@ -1,0 +1,186 @@
+ ///
+ /// @file    Vector.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-20 09:49:56
+ ///
+ 
+#include <iostream>
+#include <memory>
+using std::cout;
+using std::endl;
+using std::allocator;
+
+template <typename T>
+class Vector
+{
+public:
+	typedef T*  iterator;
+	typedef const T * const_iterator;
+
+	Vector()
+	: _start(0)
+	, _finish(0)
+	, _end_of_storage(0)
+	{}
+	 
+	~Vector();
+	
+	iterator begin(){	return _start;	}	
+	iterator end(){	return _finish;	}
+
+	void push_back(const T & t);
+	void pop_back();
+
+	size_t size() const 
+	{	return _finish - _start;	}
+
+	size_t capacity() const
+	{	return _end_of_storage - _start;	}
+private:
+	void reallocate();
+
+private:
+	static allocator<T> _alloc;
+
+	T * _start;
+	T * _finish;
+	T * _end_of_storage;
+};
+
+
+template <typename T>
+allocator<T> Vector<T>::_alloc;
+
+template <typename T>
+Vector<T>::~Vector()
+{
+	//销毁对象
+	while(_start != _finish)
+		_alloc.destroy(--_finish);
+	//回收开辟的空间
+	if(_start)
+		_alloc.deallocate(_start, capacity());
+}
+
+//动态数组的实现:
+//	  当当前元素的个数与能容纳元素的个数相等时，
+//先开辟新的空间(原来的2倍)，然后把原来空间的元素
+//复制到新空间上，再回收原来的空间，最后在新开的空间上添加
+//新的元素
+ 
+template <typename T>
+void Vector<T>::push_back(const T & t)
+{
+	if(size() == capacity())
+	{
+		//动态扩容
+		reallocate();
+	}
+	
+	//构造对象
+	_alloc.construct(_finish++, t);
+}
+
+template <typename T>
+void Vector<T>::pop_back()
+{
+	if(_start != _finish)
+		_alloc.destroy(--_finish);
+}
+
+template <typename T>
+void Vector<T>::reallocate()
+{
+	size_t oldCapacity = capacity();
+	size_t newCapacity = oldCapacity ? 2 * oldCapacity : 1;
+
+	T * tmp = _alloc.allocate(newCapacity);//申请是原始的内存
+	if(_start)
+	{
+		///memcpy();// 内置类型的数据
+		//copy();//调用对象的赋值运算符函数,意味着对象存在
+		std::uninitialized_copy(_start, _finish, tmp);//复制原来空间的数据 
+
+		//回收原来空间的数据
+		while(_start != _finish)
+			_alloc.destroy(--_finish);
+		//回收原来空间
+		_alloc.deallocate(_start, oldCapacity);
+	}
+	_start = tmp;
+	_finish = _start + oldCapacity;
+	_end_of_storage = _start + newCapacity;
+}
+
+
+class Point
+{
+public:
+	Point(int ix = 0, int iy = 0)
+	: _ix(ix)
+	, _iy(iy)
+	{	cout << "Point(int=0,int=0)" << endl;}
+
+	Point(const Point & rhs)
+	: _ix(rhs._ix)
+	, _iy(rhs._iy)
+	{
+		cout << "Point(const Point &)" << endl;
+	}
+
+	~Point()
+	{	cout << "~Point()" << endl;	}
+
+	friend std::ostream & operator<<(std::ostream & os, const Point & rhs);
+private:
+	int _ix;
+	int _iy;
+};
+
+std::ostream & operator<<(std::ostream & os, const Point & rhs)
+{
+	os << "(" << rhs._ix
+	   << "," << rhs._iy
+	   << ")";
+	return os;
+}
+
+
+template <typename Container>
+void display(Container & c)
+{
+	cout << "c's size = " << c.size() << endl
+		 << "c's capacity = " << c.capacity() << endl << endl;
+#if 0
+#endif
+}
+
+int main(void)
+{
+	Vector<Point> points;
+	display(points);
+	points.push_back(Point(1, 2));
+	display(points);
+
+	points.push_back(Point(3, 4));
+	display(points);
+	points.push_back(Point(5, 6));
+	display(points);
+#if 0
+	points.push_back(Point(1, 2));
+	display(points);
+	points.push_back(Point(1, 2));
+	display(points);
+	points.push_back(Point(1, 2));
+	display(points);
+#endif
+
+	Vector<Point>::iterator it = points.begin();
+	while(it != points.end())
+	{
+		cout << *it << endl;
+		++it;
+	}
+	cout << endl;
+	return 0;
+}
