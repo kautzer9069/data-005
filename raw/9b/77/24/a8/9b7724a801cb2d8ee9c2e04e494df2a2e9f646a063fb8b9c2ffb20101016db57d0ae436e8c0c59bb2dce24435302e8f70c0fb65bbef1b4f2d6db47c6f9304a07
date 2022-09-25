@@ -1,0 +1,32 @@
+ /// @date    2018-06-26 16:07:50 
+#include <iostream>
+using std::cout;
+using std::endl;
+//抽象类第二种形式:
+//	只定义了protected的构造函数
+class Base {
+protected:
+	Base(int ibase)
+	: _ibase(ibase)
+	{
+		cout << "Base(int)" << endl;
+	}
+private:
+	int _ibase;
+}; //end of Base
+
+class Derived : public Base {
+public:
+	Derived(int ibase, int iderived)
+		: Base(ibase)
+		, _idervied(iderived) 	{	cout << "Derived(int,int)" << endl;	}
+
+private:
+	int _idervied;
+};// end of derived
+ 
+int main(void){
+	//Base base(1);//error
+	Derived derived(1, 2);
+	return 0;
+}
