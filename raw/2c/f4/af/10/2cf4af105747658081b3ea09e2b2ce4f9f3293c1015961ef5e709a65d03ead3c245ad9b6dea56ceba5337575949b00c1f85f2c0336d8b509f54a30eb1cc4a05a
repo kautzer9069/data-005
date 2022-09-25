@@ -1,0 +1,57 @@
+ /// @file    multiDerivedVirtualFunction.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-26 16:35:18
+ 
+#include <iostream>
+using std::cout;
+using std::endl;
+
+class A{
+public:
+	virtual void a() {	cout << "A::a()" << endl;	}
+	virtual void b() {	cout << "A::b()" << endl;	}
+	virtual void c() {	cout << "A::c()" << endl;	}
+};//end of A
+
+class B{
+public:
+	virtual void a() {	cout << "B::a()" << endl;	}
+	virtual void b() {	cout << "B::b()" << endl;	}
+	void c() {	cout << "B::c()" << endl;	}
+	void d() {	cout << "B::d()" << endl;	}
+};// end of B
+
+class C : public A, public B{
+public:
+	virtual void a() {	cout << "C::a()" << endl;	}
+	void c() {	cout << "C::c()" << endl;	}
+	void d() {	cout << "C::d()" << endl;	}
+};// end of C
+ 
+int main(void){
+	C c;
+	cout << "&c = " << &c << endl;
+
+	A * pA = &c;
+	cout << "pA = " << pA << endl;
+	pA->a();//C::a()
+	pA->b();//A::b()
+	pA->c();//C::c()
+	cout << endl;
+
+	B * pB = &c;//pB的值并不指向c对象的首地址
+	cout << "pB = " << pB << endl;
+	pB->a();//C::a()
+	pB->b();//B::b()
+	pB->c();//B::c()
+	pB->d();//B::d()
+	cout << endl;
+
+	C * pC = &c;
+	pC->a();
+	//pC->b();//error, 二义性
+	pC->c();
+	pC->d();
+
+	return 0;
+}
