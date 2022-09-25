@@ -1,0 +1,66 @@
+ ///
+ /// @file    EpollPoller.h
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2015-11-06 16:12:11
+ ///
+
+
+#ifndef __WD_EPOLLPOLLER_H
+#define __WD_EPOLLPOLLER_H
+
+#include "Noncopyable.h"
+#include "TcpConnection.h"
+#include "MutexLock.h"
+#include <sys/epoll.h>
+#include <vector>
+#include <map>
+#include <functional>
+using namespace std;
+
+namespace wd{
+class Acceptor;
+class EpollPoller : Noncopyable{
+	using ConnectionCallback = function<void( TcpConnectionPtr &)> ;
+	using CloseCallback =  function<void( TcpConnectionPtr &)> ;
+	using MessageCallback =  function<void( TcpConnectionPtr &, Buffer *)> ;
+	using Functor = function<void()> ;
+public:
+	EpollPoller(Acceptor & acceptor);
+	~EpollPoller();
+	void loop();
+	void unloop();
+	void runInLoop(const Functor & cb);
+	void doPendingFunctors();
+	void wakeup();
+	void handleRead();
+	void setConnectionCallback(const ConnectionCallback & cb);
+	void setMessageCallback(const MessageCallback & cb);
+	void setCloseCallback(const CloseCallback & cb);
+private:
+	void waitEpollfd();
+	void handleConnection();
+	void handleMessage(int peerfd);
+private:
+	Acceptor & acceptor_;
+	int epollfd_;
+	int listenfd_;
+	int wakeupfd_;
+	bool isLooping_;
+	MutexLock mutex_;
+	vector<Functor> pendingFunctors_;
+
+	using EventList = vector<struct epoll_event> ;
+	EventList eventsList_;
+
+	using ConnectionMap = map<int, TcpConnectionPtr> ;
+	ConnectionMap connMap_;
+
+	ConnectionCallback onConnectionCb_;
+	MessageCallback onMessageCb_;
+	CloseCallback onCloseCb_;
+};
+
+
+}//end of namespace wd
+
+#endif
