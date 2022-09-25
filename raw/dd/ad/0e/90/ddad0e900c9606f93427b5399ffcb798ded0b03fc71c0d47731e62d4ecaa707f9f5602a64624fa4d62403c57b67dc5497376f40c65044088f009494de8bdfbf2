@@ -1,0 +1,78 @@
+#include <iostream>
+using std::cout;
+using std::endl;
+
+class Base{
+public:	Base(int ib)	: _ib(ib)	{	cout << "Base(int)" << endl;	}
+	void callBase1(/*    Base * const this    */){	display();	}		
+	void callBase2()	{	Base::display();	}
+	virtual	void display() const	{	cout << "Base::_ib = " << _ib << endl;	}
+private:	double _ib;
+};//end of Base
+
+class Derived: public Base{
+public:	Derived(int ib, int id)
+			: Base(ib)
+			, _id(id)	{		cout << "Derived(int,int)" << endl;	}
+#if 1
+	//加不加virtual关键字，都是一个虚函数，只要基类中定义为虚函数
+	//override：覆盖 --> 覆盖的是虚函数表中相应虚函数的入口地址
+	virtual void display() const{		cout << "Derived::_id = " << _id << endl;	}
+#endif
+private:	double _id;
+};//end of derived
+
+//动态多态（虚函数机制）被激活的条件:
+//1. 基类定义虚函数
+//2. 派生类重定义虚函数
+//3. 创建派生类对象 --> 虚函数指针
+//4. 用基类指针(引用)指向派生类对象
+//5. 用基类指针(引用)调用虚函数
+//虚函数指针为什么要放在对象存储布局的开始位置？
+//答: 为了以最快的速度找到相应的虚函数
+void display(Base * pbase)	{  pbase->display(); }   //从编译期来看，它肯定不会调用派生类对象的成员函数的
+void display(Base & base){	base.display();}
+int test0(void){
+	Base base(1);
+	Derived derived(10,2);
+	display(&base);
+	display(&derived);
+	cout << endl;
+	display(base);
+	display(derived);
+	return 0;
+}
+
+void test1(void){
+	cout << "sizeof(Base) = " << sizeof(Base) << endl;
+	cout << "sizeof(Derived) = " << sizeof(Derived) << endl;
+}
+
+void test2(void){
+	Base base(10);
+	base.display();// 如果是用对象来调用虚函数，并不会表现出虚函数的特性
+	cout << endl;
+
+	Derived derived(10, 2);
+	derived.display();//通过对象调用时，也表现隐藏
+}
+
+void test3(void){
+	Base base(10);
+	base.callBase1();//this指向的是base对象
+	base.callBase2();
+	
+	cout << endl;
+
+	Derived derived(1, 2);
+	derived.callBase1();//this指向的是derived对象
+	derived.callBase2();
+}
+
+int main(void){
+	//test0();
+	//test1();
+	//test2();
+	test3();
+	return 0;
+}
