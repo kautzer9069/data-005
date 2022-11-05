@@ -1,0 +1,67 @@
+#!/bin/bash
+
+while :
+do  
+	if read -n 1 -p "Do you want to update Recovery [Y/N]:"   	#提示是否安装所有软件
+    	then  
+        	case $REPLY in  
+            	Y|y)
+                	echo -e "\n Install all program!  \n"  
+					#输入Y或y后安装所有软件步骤
+                  	break  
+                ;;  
+            	N|n)
+                	echo -e "\n Not Install all program! \n"  
+                	#输入N或n后执行如下操作
+			while :
+			do
+				if read -p "Please enter the program name!End of the installation type N! [程序A/程序B/程序C/程序D/程序E/N]:" #提示输入要安装的单个程序名称，结束安装输入N
+    				then
+        				case $REPLY in
+            				程序A|程序a)
+                				echo -e "\n 开始安装程序A  \n"
+								#安装程序A的步骤
+                  				break
+                				;;
+            				程序B|程序b)
+                				echo -e "\n 开始安装程序B \n"
+								#安装程序B的步骤
+                				break
+                				;;
+            				程序C|程序c)
+                				echo -e "\n 开始安装程序C \n"
+								#安装程序C的步骤
+                				break
+                				;;
+            				程序D|程序d)
+                				echo -e "\n 开始安装程序D \n"
+								#安装程序D的步骤
+                				break
+                				;;
+            				程序E|程序e)
+                				echo -e "\n 开始安装程序E \n"
+								#安装程序E的步骤
+                				break
+                			;;
+            				N|n)
+                				echo -e "\n 结束安装!! \n"
+                				break
+                			;;
+            				*)
+                				echo -e "\n 输入参数错误 !! \n"
+        				esac
+				else
+					echo -e "\n 结束安装 \n"
+                  			break
+				fi
+			done
+			break  
+                ;;  
+            	*)
+                	echo -e "\n 输入参数错误 !! \n" > /dev/null 
+        	esac   
+	else
+                echo -e "\n 结束安装 \n" > /dev/null
+                break  
+	fi   
+done
