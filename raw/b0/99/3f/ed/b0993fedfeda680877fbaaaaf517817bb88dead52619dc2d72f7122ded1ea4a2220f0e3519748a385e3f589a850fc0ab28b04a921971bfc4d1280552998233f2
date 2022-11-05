@@ -1,0 +1,65 @@
+Attribute VB_Name = "Reg"
+
+'+--------------------------------------------------------------------------
+'
+'          reg.bas ---- 共享软件加密算法库专业版
+'          Copyright (c) 2002-2006 liangs Studio, All rights reserved
+'          Created 2006/5/29 by liangs
+'          Version: 3.7 Final
+'          Homepage: http://liangs99.yeah.net
+'          Email: regdll@tom.com
+'
+'----------------------------------------------------------------------------
+
+Public Declare Function GetHardDiskId Lib "Reg.DLL" (ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function GetMainBoardId Lib "Reg.DLL" (ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function GetMACAddress Lib "Reg.DLL" (ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function BlowFishEncrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpKey As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function BlowFishDecrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpKey As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function MD5Encrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpOutBuffer As String, ByVal length As Long, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function SHAEncrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpOutBuffer As String, ByVal length As Long, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function Secret16Encrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpKey As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function MD5FileCheck Lib "Reg.DLL" (ByVal FileNameStr As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function CRCFileCheck Lib "Reg.DLL" (ByVal FileNameStr As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function EncryptStringFun1  Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpKey As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function DecryptStringFun1  Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpKey As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function EncryptStringFun2  Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpKey As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function DecryptStringFun2  Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpKey As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function FileEncrypt Lib "Reg.DLL" (ByVal lpInputFileName As String, ByVal lpOutputFileName As String, ByVal lpKey As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function FileDecrypt Lib "Reg.DLL" (ByVal lpInputFileName As String, ByVal lpOutputFileName As String, ByVal lpKey As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function RSAEncrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpDdata As String, ByVal lpNdata As String, ByVal Mode As Long, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long 
+
+Public Declare Function RSADecrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpNdata As String, ByVal Mode As Long, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long 
+
+Public Declare Function Base64Encode Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function Base64Decode Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function CRC32 Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal length As Long, ByVal lpOutBuffer As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function DesEncrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpOutBuffer As String, ByVal lpKey As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function DesDecrypt Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpOutBuffer As String, ByVal lpKey As String, ByVal lpRegisterCode As String) As Long
+
+Public Declare Function CharToHex Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpOutBuffer As String) As Long
+
+Public Declare Function HexToChar Lib "Reg.DLL" (ByVal lpInBuffer As String, ByVal lpOutBuffer As String) As Long
+
+Public Declare Function GetDllVersion Lib "Reg.DLL" (ByVal lpOutBuffer As String) As Long
+
