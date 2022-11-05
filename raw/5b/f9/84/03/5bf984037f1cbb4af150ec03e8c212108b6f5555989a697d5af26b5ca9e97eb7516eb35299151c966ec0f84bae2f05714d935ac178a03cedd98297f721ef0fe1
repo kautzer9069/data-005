@@ -1,0 +1,165 @@
+{\rtf1\ansi\ansicpg1252\uc1 \deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f1\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Arial;}
+{\f29\froman\fcharset238\fprq2 Times New Roman CE;}{\f30\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f32\froman\fcharset161\fprq2 Times New Roman Greek;}{\f33\froman\fcharset162\fprq2 Times New Roman Tur;}
+{\f34\froman\fcharset177\fprq2 Times New Roman (Hebrew);}{\f35\froman\fcharset178\fprq2 Times New Roman (Arabic);}{\f36\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f37\fswiss\fcharset238\fprq2 Arial CE;}{\f38\fswiss\fcharset204\fprq2 Arial Cyr;}
+{\f40\fswiss\fcharset161\fprq2 Arial Greek;}{\f41\fswiss\fcharset162\fprq2 Arial Tur;}{\f42\fswiss\fcharset177\fprq2 Arial (Hebrew);}{\f43\fswiss\fcharset178\fprq2 Arial (Arabic);}{\f44\fswiss\fcharset186\fprq2 Arial Baltic;}}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;
+\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 
+\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \snext0 Normal;}{\s1\ql \li0\ri0\keepn\nowidctlpar\faauto\rin0\lin0\itap0 \b\f1\fs20\cf13\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \sbasedon0 \snext0 heading 1;}{\*\cs10 \additive 
+Default Paragraph Font;}}{\info{\author EZEKIEL}{\operator EZEKIEL}{\creatim\yr2006\mo12\dy15\hr16\min42}{\revtim\yr2006\mo12\dy15\hr17}{\version2}{\edmins18}{\nofpages4}{\nofwords976}{\nofchars5564}{\*\company LEVITICALHEBREW}{\nofcharsws6832}
+{\vern8247}}\widowctrl\ftnbj\aenddoc\noxlattoyen\expshrtn\noultrlspc\dntblnsbdb\nospaceforul\hyphcaps0\horzdoc\dghspace120\dgvspace120\dghorigin1701\dgvorigin1984\dghshow0\dgvshow3\jcompress\viewkind1\viewscale100\nolnhtadjtbl \fet0\sectd 
+\linex0\sectdefaultcl {\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang
+{\pntxta )}}{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl8
+\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}\pard\plain \s1\ql \li0\ri0\keepn\nowidctlpar\faauto\outlinelevel0\rin0\lin0\itap0 
+\b\f1\fs20\cf13\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {SmartStart Scripting Toolkit V1.7
+\par }\pard\plain \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 \fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\f1\fs20 Models
+\par SmartStart Scripting Toolkit V1.7
+\par Ordering Information:
+\par Download the SmartStart Scripting Toolkit from the Compaq web site at: http://h18013.www1.hp.com/manage/toolkit.html
+\par 
+\par }{\b\f1\fs20 Subscribe to ActiveUpdate for proactive delivery of server support software.
+\par }\pard\plain \s1\ql \li0\ri0\keepn\nowidctlpar\faauto\outlinelevel0\rin0\lin0\itap0 \b\f1\fs20\cf13\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {
+\par Introduction
+\par }\pard\plain \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 \fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\f1\fs20 
+Compaq redefined the paradigm for quick and easy server deployment with SmartStart. As businesses are faced with the need to deploy hundreds to thousands of servers in a quick and reliable fashion, Compaq o
+ffers the SmartStart Scripting Toolkit. The Scripting Toolkit radically simplifies high volume server deployment by delivering a hands-off, unattended installation and configuration solution. Using SmartStart technology, the Scripting Toolkit provides a f
+l
+exible way to create standard server configuration scripts. These scripts are used to automate many of the manual steps in the server configuration process. This automated process cuts time from each server deployment, making it possible to scale servers 
+to high volumes in rapid fashion.
+\par The SmartStart Scripting Toolkit supports Compaq ProLiant ML/DL servers, selected pre-ML/DL Compaq servers, and the new ProLiant BL servers. The Scripting Toolkit includes a modular set of utilities and important documentat
+ion that describe how to apply these new tools to build an automated server deployment process.
+\par For the latest features, visit http://h18013.www1.hp.com/manage/toolkit.html.
+\par 
+\par }{\b\f1\fs20\cf13 Rack and Go Deployment
+\par }{\f1\fs20 Rack the server, provide power and network connection, ins
+ert the boot diskette and go. By combining scripts for server configuration and operating system installation, IT administrators can rapidly configure a new server and installation the operating system in a hands-off unattended manner.
+\par 
+\par }\pard\plain \s1\ql \li0\ri0\keepn\nowidctlpar\faauto\outlinelevel0\rin0\lin0\itap0 \b\f1\fs20\cf13\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {Virtual Presence Server Deployment
+\par }\pard\plain \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 \fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\f1\fs20 
+The Remote Insight Lights Out Edition (RILOE) and the Scripting Toolkit are two key components of Compaq's management strategy to deliver "Virtual Presence" -controlling your IT assets anywhere on the network. RILOE provides powerful remote
+ access to your server. Now, using the new "Virtual Floppy Drive" feature, system administrators can remotely power on a new server, boot up the network boot diskette image, run the server configuration scripts and launch the OS installation across the ne
+twork, providing a new way to deploy new servers at remote locations without local IT staff.
+\par 
+\par }\pard\plain \s1\ql \li0\ri0\keepn\nowidctlpar\faauto\outlinelevel0\rin0\lin0\itap0 \b\f1\fs20\cf13\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {Rapid Deployment Pack
+\par }\pard\plain \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 \fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\f1\fs20 
+The SmartStart Scripting Toolkit is now an exclusive feature of the ProLiant Essentials Rapid Deployment Pack. With the ScriptingToolkit prov
+iding the technology for which to script server deployments, Compaq has extended our offerings for multi-server deployment tools with the Rapid Deployment Pack. Visit http://h18000.www1.hp.com/products/servers/management/rdp/index.html for more informatio
+n.
+\par 
+\par }\pard\plain \s1\ql \li0\ri0\keepn\nowidctlpar\faauto\outlinelevel0\rin0\lin0\itap0 \b\f1\fs20\cf13\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {SmartStart Scripting Toolkit Benefits \tab 
+\par }\pard\plain \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 \fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\f1\fs20 
+\par     * "Rack and Go" unattended installation frees up scarce IT resources
+\par     * Scales to support high volume server deployments lowering cost/server as more are deployed
+\par     * Delivers consistent server configurations across multiple servers
+\par     * Integrates into popular methods for operating system deployment
+\par     * "Best Practices" guide provides valuable examples on how to build scripts for high volume server deployment
+\par 
+\par Key Features\tab 
+\par 
+\par     * SmartStart Technology \endash  Utilizes proven technology to provide a consistent and reliable server configuration
+\par     * Replication Utilities \endash  Provide an easy way to create and copy server hardware, array and RILOE board configuration script files
+\par     * Configuration Files \endash  Provide a flexible way to edit standard server, array and RILOE board configurations
+\par     * Scripting \endash  Enables the IT administrator to script server configuration files and link to the unattend installation tools of the operating system
+\par 
+\par SmartStart Scripting Toolkit Advantage\tab 
+\par 
+\par     * Extends leadership for enterprises looking for fast and effective server deployment
+\par     * Lowers server deployment cost
+\par     * Scales to support high volume server deployment
+\par     * Provides easy to understand documentation with how-to information and sample scripts
+\par     * Builds automated server deployment solution
+\par 
+\par Availability and Usage\tab SmartStart Scripting Toolkit is available for free from http://h18013.www1.hp.com/manage/toolkit.html.
+\par 
+\par }{\b\f1\fs20\cf13 contents
+\par }{\f1\fs20 Overview      Technical Specifications 
+\par 
+\par Technical Specifications
+\par Supported Models
+\par Servers\tab 
+\par ProLiantDL320
+\par \tab ProLiant ML570
+\par  \tab 
+\par ProLiant DL360, DL360 G2
+\par \tab ProLiant ML750
+\par  \tab 
+\par ProLiant DL380, DL380 G2
+\par \tab ProLiant 1600
+\par  \tab 
+\par ProLiant DL580, DL580 G2 new
+\par \tab ProLiant 1850R
+\par  \tab 
+\par ProLiant DL760
+\par \tab ProLiant 3000
+\par  \tab 
+\par ProLiant ML310 new
+\par \tab ProLiant 6400R
+\par  \tab 
+\par }{\f1\fs20\lang11274\langfe1033\langnp11274 ProLiant ML330, ML330e, ML330 G2
+\par \tab }{\f1\fs20 ProLiant 8500
+\par  \tab 
+\par ProLiant ML350, ML350 G2, ML350 G3 new
+\par \tab ProLiant BL e-Class
+\par  \tab 
+\par ProLiant ML370, ML370 G2, ML370 G3 new
+\par \tab ProLiant BL p-Class new
+\par  \tab 
+\par ProLiant ML530, ML530 G2
+\par \tab  
+\par 
+\par \tab 
+\par NOTE: This is a list of supported servers. Some may be discontinued.
+\par Compaq Options\tab 
+\par Remote Insight Lights-Out Edition (RILOE)
+\par Array Controllers\tab 
+\par Smart-2/P Array Controller
+\par \tab Smart Array 5312 Controller
+\par  \tab 
+\par Smart-2/DH Array Controller
+\par \tab Smart Array 5i Controller
+\par  \tab 
+\par Smart-2/SL Array Controller
+\par \tab RAID Array 4000 Controller
+\par  \tab 
+\par Smart Array 221 Controller
+\par \tab RAID Array Host Controller /P
+\par  \tab 
+\par Smart Array 431 Controller
+\par \tab 64-bit RAID Array Host Controller
+\par  \tab 
+\par Smart Array 532 Controller
+\par \tab 64-bit/66-MHz Fibre Channel Host Bus Adapter
+\par  \tab 
+\par Smart Array 3200 Controller
+\par \tab Smart Array 5302/Fiber Channel Controller
+\par  \tab 
+\par Smart Array 4200 Controller
+\par \tab AMI ATA Raid Controller - embedded on ProLiant ML330 G2
+\par  \tab 
+\par Smart Array 5300 Controller
+\par \tab  
+\par  \tab 
+\par NOTE: This is a list of supported servers. Some may be discontinued.
+\par Supported Server Operating Systems
+\par Operating Systems\tab Microsoft\'ae Windows\'ae 2000 Server and Advanced Server
+\par  \tab Microsoft Windows NT\'ae 4.0
+\par  \tab Novell NetWare 5.1 and 6.0
+\par  \tab Red Hat Linux 7.2 and 7.3
+\par  \tab Toolkit Utilities Require DOS 6.22 and later
+\par Product Information
+\par The following product materials are available on the SmartStart Scripting Toolkit web page at http://h18013.www1.hp.com/manage/toolkit.html.
+\par 
+\par     * Datasheet
+\par     * White Paper
+\par     * General FAQ
+\par     * Troubleshooting FAQ
+\par     * User Guide
+\par 
+\par \'a9 Copyright 2003 Hewlett-Packard Development Company, L.P.
+\par The information contained herein is subject to change without notice.
+\par 
+\par Microsoft and Windows NT are US registered trademarks of Microsoft Corporation.
+\par 
+\par The only warranties for HP products and services are set forth in the express warranty statements accompanying such products and services. Nothing herein should be construed as constituting an additional warranty. HP shall not be liable for technical 
+or editorial errors or omissions contained herein.
+\par    DA-11327 - World Wide - Version 4 - September 5, 2003 --- Retired on February 12, 2004 
+\par }}
