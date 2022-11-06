@@ -1,0 +1,241 @@
+/*
+ * Copyright (c) 2000-2008
+ * Author: Weiming Zhou
+ *
+ * Permission to use, copy, modify, distribute and sell this software
+ * and its documentation for any purpose is hereby granted without fee,
+ * provided that the above copyright notice appear in all copies and
+ * that both that copyright notice and this permission notice appear
+ * in supporting documentation.  
+ */
+
+#include <windows.h>
+#include <stdio.h>
+#include "..\CAPI\CapiGlobal.h"
+#include "..\CAPI\Stack.h"
+
+void DRV_Stack_Create(UINT i);
+void DRV_Stack_Pop(UINT i);
+void DRV_Stack_Push(UINT i);
+
+typedef STACK Stack;
+
+void Test_Stack()
+{
+    int     i;
+    for ( i = 1; i < 50; i++ )
+    {
+        DRV_Stack_Create(i);
+        DRV_Stack_Pop(i);
+        DRV_Stack_Push(i);
+
+    }    
+}
+
+void DRV_Stack_Create(UINT i)
+{
+    STACK *pStack = NULL;
+    switch( i )
+    {
+    case 1:
+        pStack = Stack_Create(0);
+        if ( pStack != NULL )
+        {           
+            printf( "Stack_Create(0) ²âÊÔÓÃÀý1Ê§°Ü!\n" );
+        }
+        break;
+    case 2:
+        pStack = Stack_Create(1);
+        if ( pStack == NULL
+            || pStack->ppBase == NULL 
+            || pStack->uStackSize != 1 
+            || pStack->uTop != 0 )
+        {           
+            printf( "Stack_Create(1) ²âÊÔÓÃÀý2Ê§°Ü!\n" );
+        }
+        break;
+    case 3:
+        pStack = Stack_Create(2);
+        if ( pStack == NULL
+            || pStack->ppBase == NULL 
+            || pStack->uStackSize != 2 
+            || pStack->uTop != 0 )
+        {           
+            printf( "Stack_Create(2) ²âÊÔÓÃÀý3Ê§°Ü!\n" );
+        }
+        break;
+    case 4:
+        pStack = Stack_Create(1024);
+        if ( pStack == NULL
+            || pStack->ppBase == NULL 
+            || pStack->uStackSize != 1024 
+            || pStack->uTop != 0 )
+        {           
+            printf( "Stack_Create(1024) ²âÊÔÓÃÀý4Ê§°Ü!\n" );
+        }
+        break;
+    default:
+        break;
+    }
+    if ( pStack != NULL && pStack->uStackSize != 0  )
+    {
+        Stack_Destroy(pStack, NULL);
+    }
+}
+
+
+void DRV_Stack_Push(UINT i)
+{
+    INT     nRet;
+    Stack *pStack = NULL;
+    pStack = Stack_Create(2);
+    switch( i )
+    {
+    case 1:
+        nRet = Stack_Push(pStack, strdup("Stack_1"));
+        if ( nRet != CAPI_SUCCESS
+            || strcmp((char *)pStack->ppBase[0], "Stack_1") != 0 
+            || pStack->uTop != 1 
+            || pStack->uStackSize != 2 )
+        {
+            printf( "Stack_Push() ²âÊÔÓÃÀý1Ê§°Ü!\n" );
+        }
+        break;
+    case 2:
+        Stack_Push(pStack, strdup("Stack_1"));
+        nRet = Stack_Push(pStack, strdup("Stack_2"));
+        if ( nRet != CAPI_SUCCESS 
+            || strcmp((char *)pStack->ppBase[0], "Stack_1") != 0 
+            || strcmp((char *)pStack->ppBase[1], "Stack_2") != 0 
+            || pStack->uTop != 2 
+            || pStack->uStackSize != 4 )
+        {
+            printf( "Stack_Push() ²âÊÔÓÃÀý2Ê§°Ü!\n" );
+        }
+        break;
+    case 3:
+        Stack_Push(pStack, strdup("Stack_1"));
+        Stack_Push(pStack, strdup("Stack_2"));
+        nRet = Stack_Push(pStack, strdup("Stack_3"));
+        if ( nRet != CAPI_SUCCESS 
+            || strcmp((char *)pStack->ppBase[0], "Stack_1") != 0 
+            || strcmp((char *)pStack->ppBase[1], "Stack_2") != 0 
+            || strcmp((char *)pStack->ppBase[2], "Stack_3") != 0 
+            || pStack->uTop != 3 
+            || pStack->uStackSize != 4 )
+        {
+            printf( "Stack_Push() ²âÊÔÓÃÀý3Ê§°Ü!\n" );
+        }
+        break;
+    case 4:
+        break;
+    default:
+        break;
+    }
+    if ( pStack != NULL  )
+    {
+        Stack_Destroy(pStack, NULL);
+    }
+}
+
+void DRV_Stack_Pop(UINT i)
+{
+    void    *pData;
+    Stack *pStack = NULL;
+    pStack = Stack_Create(128);
+    switch( i )
+    {
+    case 1:
+        Stack_Push(pStack, strdup("Stack_8"));
+        Stack_Push(pStack, strdup("Stack_3"));
+        Stack_Push(pStack, strdup("Stack_1"));
+        Stack_Push(pStack, strdup("Stack_4"));
+        Stack_Push(pStack, strdup("Stack_6"));
+        Stack_Push(pStack, strdup("Stack_7"));
+        Stack_Push(pStack, strdup("Stack_9"));
+        Stack_Push(pStack, strdup("Stack_5"));
+        Stack_Push(pStack, strdup("Stack_2"));
+        Stack_Push(pStack, strdup("Stack_0"));
+        Stack_Push(pStack, strdup("Stack_99"));
+
+        pData = Stack_Pop(pStack);
+
+        if ( strcmp((char *)pData, "Stack_99") != 0 
+            || strcmp((char *)pStack->ppBase[0], "Stack_8") != 0 
+            || strcmp((char *)pStack->ppBase[1], "Stack_3") != 0 
+            || strcmp((char *)pStack->ppBase[2], "Stack_1") != 0 
+            || strcmp((char *)pStack->ppBase[3], "Stack_4") != 0 
+            || strcmp((char *)pStack->ppBase[4], "Stack_6") != 0 
+            || strcmp((char *)pStack->ppBase[5], "Stack_7") != 0 
+            || pStack->uTop != 10 
+            || pStack->uStackSize != 128 )
+        {
+            printf( "Stack_Pop() ²âÊÔÓÃÀý1Ê§°Ü!\n" );
+        }
+        pData = Stack_Pop(pStack);
+
+        if ( strcmp((char *)pData, "Stack_0") != 0 )
+        {
+            printf( "Stack_Pop() ²âÊÔÓÃÀý1Ê§°Ü!\n" );
+        }
+
+        break;
+    case 2:
+        Stack_Push(pStack, strdup("Stack_8"));
+        pData = Stack_Pop(pStack);
+        if ( strcmp((char *)pData, "Stack_8") != 0 
+            || pStack->uStackSize != 128 
+            || pStack->uTop != 0 )
+        {
+            printf( "Stack_Pop() ²âÊÔÓÃÀý2Ê§°Ü!\n" );
+        }
+        break;
+    case 3:
+        Stack_Push(pStack, strdup("Stack_8"));
+        Stack_Push(pStack, strdup("Stack_5"));
+        pData = Stack_Pop(pStack);
+        if ( strcmp((char *)pData, "Stack_5") != 0 
+            || pStack->uStackSize != 128 
+            || pStack->uTop != 1 )
+        {
+            printf( "Stack_Pop() ²âÊÔÓÃÀý2Ê§°Ü!\n" );
+        }
+        pData = Stack_Pop(pStack);
+        if ( strcmp((char *)pData, "Stack_8") != 0 
+            || pStack->uStackSize != 128 
+            || pStack->uTop != 0 )
+        {
+            printf( "Stack_Pop() ²âÊÔÓÃÀý2Ê§°Ü!\n" );
+        }
+        pData = Stack_Pop(pStack);
+        if ( pData != NULL 
+            || pStack->uStackSize != 128 
+            || pStack->uTop != 0 )
+        {
+            printf( "Stack_Pop() ²âÊÔÓÃÀý2Ê§°Ü!\n" );
+        }
+        
+        
+
+        break; 
+    case 4:
+        pData = Stack_Pop(pStack);
+        if ( pData != NULL 
+            || pStack->uStackSize != 128 
+            || pStack->uTop != 0 )
+        {
+            printf( "Stack_Pop()Õ»Îª¿ÕµÄ ²âÊÔÓÃÀý4Ê§°Ü!\n" );
+        }
+        if ( !Stack_IsEmpty(pStack))
+        {
+            printf( "Stack_Pop()Õ»Îª¿ÕµÄ ²âÊÔÓÃÀý4Ê§°Ü!\n" );
+        }
+        break;
+    default:
+        break;
+    }
+    if ( pStack != NULL  )
+    {
+        Stack_Destroy(pStack, NULL);
+    }
+}
