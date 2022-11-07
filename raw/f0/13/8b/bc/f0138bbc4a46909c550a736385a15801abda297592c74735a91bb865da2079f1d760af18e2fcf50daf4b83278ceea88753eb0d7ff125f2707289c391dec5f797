@@ -1,0 +1,32 @@
+/* file : variance.c
+ * purpose : calculate the variance of a data set
+ */
+
+#include <math.h>
+
+double
+variance(vec,ave,len)
+double	*vec;		/* pointer to the vector */
+double  ave;            /* median value of the data set */
+int	len;		/* length of the vector */
+{
+		  int i;
+		  double sum,tem;
+
+		  sum=0.0;
+
+		  for (i=0;i<len;i++)
+		  {
+					 tem=vec[i]-ave;
+					 tem=tem*tem;
+					 sum+=tem;
+		  }
+
+		  sum=sum/len;
+
+		  sum=sqrt(sum);
+
+		  return(sum);
+}
+
+
